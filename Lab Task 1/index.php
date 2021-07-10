@@ -1,5 +1,5 @@
 <?php
-  session_start();
+  //session_start();
   $uname="";
   $err_uname="";
   $pass="";
@@ -26,7 +26,8 @@
     if(!$hasError){
       foreach($users as $u=>$p){
         if($uname == $u && $pass == $p){
-          $_SESSION["loggeduser"] = $uname;
+          //$_SESSION["loggeduser"] = $uname;
+          setcookie("loggeduser", $uname, time()+120);
           header("Location: dashboard.php");
         }
       }
