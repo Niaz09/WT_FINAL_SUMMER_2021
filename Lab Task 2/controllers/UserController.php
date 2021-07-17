@@ -1,92 +1,93 @@
 <?php
   include 'models/db_config.php';
+
   $name="";
   $err_name="";
   $uname="";
   $err_uname="";
   $email="";
   $err_email="";
-  $password="";
-  $err_password="";
+  $pass="";
+  $err_pass="";
   $err_db="";
   $hasError=false;
 
   if(isset($_POST["sign_up"])){
-    if(empty($_POST["name"]))
-    {
-	     $hasError=true;
-	     $err_name="Name required";
+    if(empty($_POST["name"])){
+      $hasError=true;
+      $err_name="Name Required";
     }
-   else if(strlen($_POST["name"])>=20)
-    {
-	     $hasError=true;
-	     $err_name="Name must be equal or less than 20 characters";
+    else{
+      $name=$_POST["name"];
     }
-   else
-    {
-	     $name=$_POST["name"];
+    if(empty($_POST["uname"])){
+      $hasError=true;
+      $err_uname="Username Required";
     }
-    if(empty($_POST["uname"]))
-    {
-   	  $hasError=true;
-   	  $err_uname="User name required";
-    }
-    elseif(strlen($_POST["uname"])>=10)
-    {
-   	  $hasError=true;
-   	  $err_uname="Username must be equal or less than 10 characters";
-    }
-    else
-    {
-   	  $uname=$_POST["uname"];
+    else{
+      $uname=$_POST["uname"];
     }
     if(empty($_POST["email"])){
-      $err_email="Email Address Required";
+      $hasError=true;
+      $err_email="Email Required";
     }
-
     else{
-			$s=strpos($_POST["email"],"@");
-            if($s!=false){
-            $t=strpos($_POST["email"],".", $s+1);
-                if($t!=false){
-                    $email=$_POST["email"];
-                  }
-                else{
-                        $err_email="Invalid email";
-                }
-            }
-            else{
-                    $err_email="Invalid email";
-            }
-        }
-      if(empty($_POST["password"])){
-    			$hasError = true;
-    			$err_password = "Password Required";
-    		}
-    	else if(strlen($_POST["password"]) >= 10){
-    			$hasError = true;
-    			$err_password = "Password must be equal or less than 10 characters";
-    		}
-    	else{
-    			$password = $_POST["password"];
-    		}
-
-        if(!$hasError){
-          $rs = insertUser($name,$uname,$email,$password);
-          if($rs===true){
-            header("Location: login.php");
-
-          }
-          $err_db=$rs;
-
-        }
+      $email=$_POST["email"];
     }
-    function insertUser($name,$uname,$email,$password){
-      $query = "insert into users values(NULL,'$name','$uname','$email','$password')";
-      return execute($query);
+    if(empty($_POST["pass"])){
+      $hasError=true;
+      $err_pass="Password Required";
+    }
+    else{
+      $pass=$_POST["pass"];
     }
 
+    if(!$hasError){
+      $rs = insertUser($name,$uname,$email,$pass);
+      if($rs === true){
+        header("Location: login.php");
+      }
+      $err_db = $rs;
+
+    }
+
+  }
 
 
+  else if(isset($_POST["btn_login"])){
+    if(empty($_POST["uname"])){
+      $hasError=true;
+      $err_uname="Username Required";
+    }
+    else{
+      $uname=$_POST["uname"];
+    }
+    if(empty($_POST["pass"])){
+      $hasError=true;
+      $err_pass="Password Required";
+    }
+    else{
+      $pass=$_POST["pass"];
+    }
+    if(!$hasError){
+      if(authenticateUser($uname,$pass)){
+        header("Location: dashboard.php");
+      }
+      $err_db = "Username and password invalid";
+    }
+  }
 
+
+  function insertUser($name,$uname,$email,$pass){
+    $query = "insert into users values (NULL,'$name','$uname','$email','$pass')";
+    return execute($query);
+  }
+  function authenticateUser($uname,$pass){
+    $query = "select * from users where username='$uname' and password='$pass'";
+    $rs = get($query);
+    if(count($rs) > 0){
+      return true;
+    }
+      return false;
+  }
 ?>

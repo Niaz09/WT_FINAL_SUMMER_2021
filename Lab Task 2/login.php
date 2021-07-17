@@ -1,35 +1,39 @@
+<?php include 'main_header.php';?>
 <?php
   include 'controllers/UserController.php';
-
 ?>
+
 
 <html>
   <head>
-      <title>Login</title>
+      <title>Log In</title>
   </head>
   <body>
-      <fieldset>
-          <legend><h1>Login</h1></legend>
-          <form action="" method="post">
-              <table>
-
-                  
-                  <tr>
-                      <td align="right"><h4>Email:</h4></td>
-                      <td><input type="text" name="email" value="<?php echo $email;?>">
-                        <span><?php echo $err_email;?></span></td>
-                  </tr>
-                  <tr>
-                      <td align="right"><h4>Password:</h4></td>
-                      <td><input type="password" name="password" value="<?php echo $password;?>">
-                        <span><?php echo $err_password;?></span></td>
-                  </tr>
-                  <tr>
-                      <td><input type="submit" name="sign_up" value="Login"></td>
-                  </tr>
-
-              </table>
-          </form>
-      </fieldset>
+      <h1>Log In</h1>
+      <h5><?php echo $err_db;?></h5>
+      <form action="" method="post">
+          <table>
+              <tr>
+                  <td align="center">Username:</td>
+                  <td><input type="text" name="uname" value="<?php echo $uname;?>">
+                  <span><?php echo $err_uname;?></span></td>
+              </tr>
+              <tr>
+                  <td align="center">Password:</td>
+                  <td><input type="password" name="pass" value="<?php echo $pass;?>">
+                  <span><?php echo $err_pass;?></span></td>
+              </tr>
+              <tr>
+                  <td align="center"></td>
+                  <td><input type="submit" name="btn_login" value="Log in"></td>
+              </tr>
+              <tr>
+                  <td align="center"></td>
+                  <td><a href="signup.php">Not registered yet? Sign Up</a></td>
+              </tr>
+          </table>
+      </form>
   </body>
 </html>
+
+<?php include 'main_footer.php';?>
