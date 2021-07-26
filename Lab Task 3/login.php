@@ -1,6 +1,5 @@
-<?php include 'main_header.php';?>
 <?php
-  include 'controllers/StudentController.php';
+  include 'controllers/AdminController.php';
 ?>
 
 
@@ -32,4 +31,4 @@
   </body>
 </html>
 
-<?php include 'main_footer.php';?>
+<?php include 'admin_footer.php';?>

@@ -1,37 +1,34 @@
 <?php include 'admin_header.php'?>
 
-<html>
-  <table align="center">
-      <tr>
-          <td>
-              <span>Total Products<br>100</span>
-          </td>
-          <td>
-              <span>Total Products<br>100</span>
-          </td>
-          <td>
-              <span>Total Products<br>100</span>
-          </td>
-      </tr>
-  </table>
 
-  <h3>Recent Sales</h3>
+<html>
+  <h3>Student Information</h3>
   <table>
       <thead>
-          <th>Sl#</th>
-          <th>Product Name</th>
-          <th>Product Price</th>
-          <th>Sales Quantity</th>
-          <th>Sales Date</th>
+          <th>Name</th>
+          <th>ID</th>
+          <th>DOB</th>
+          <th>Credit</th>
+          <th>CGPA</th>
+          <th>Department</th>
       </thead>
       <tbody>
-          <td>1</td>
-          <td>Onion</td>
-          <td>100</td>
-          <td>10</td>
-          <td>10.2.2020</td>
+          <td>Niaz Rahman Bhuiyan</td>
+          <td>18-38770-3</td>
+          <td>22 January 1998</td>
+          <td>104</td>
+          <td>3.45</td>
+          <td>CSE</td>
       </tbody>
   </table>
 </html>
+
+
+
+
+
+
+
+
 
 <?php include 'admin_footer.php'?>
